@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>test </title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <script>
+        function someCallback(data){
+            /** do something with data */
+            console.log(data);
+    
+        }
+        function jsonOnLoad(callback){
+            const raw = this.contentWindow.document.body.textContent.trim();
+            try {
+                const data = JSON.parse(raw);
+                
+                var dataTestDiv = document.createElement("div");
+
+                for (var i = 0; i < data.length; i++) {
+                    
+                    var newContent = document.createTextNode(data[i]["date"]); 
+                    // add the text node to the newly created div
+                    dataTestDiv.appendChild(newContent);
+                }
+
+
+                callback(data);
+            }catch(e){
+                console.warn(e.message);
+            }
+            this.remove();
+        }
+    </script>
+    <!-- I frame with src pointing to json file on server, onload we apply "this" to have the iframe context, display none as we don't want to show the iframe -->
+    <iframe src="your/link/to/some.json" onload="jsonOnLoad.apply(this, someCallback)" style="display: none;"></iframe>
+  </body>
+</html>
