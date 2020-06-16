@@ -23,11 +23,13 @@ data[i]["date"] = new Date(s.substring(0,4), s.substring(4,6), s.substring(6, 8)
 
           document.body.appendChild(dataTestDiv);
           */
+
+          renderUSNationwideTotalCases(data);
   });
 
 }
 
-function renderUSNationwideTotalCases() {
+function renderUSNationwideTotalCases(data) {
 
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
