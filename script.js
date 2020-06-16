@@ -58,7 +58,7 @@ function renderUSNationwideTotalCases(data) {
             verticalAlign: "bottom",
             horizontalAlign: "left",
             dockInsidePlotArea: true,
-            //itemclick: toogleDataSeries
+            itemclick: toogleDataSeries
         },
         data: [{
             type: "line",
@@ -81,7 +81,6 @@ function renderUSNationwideTotalCases(data) {
 
 }
 
-/*
 function toogleDataSeries(e){
 	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
 		e.dataSeries.visible = false;
@@ -90,7 +89,7 @@ function toogleDataSeries(e){
 	}
 	chart.render();
 }
-*/
+
 
 function generateTotalCasesGraphData(data) {
 
@@ -126,7 +125,7 @@ function generateActiveCasesGraphData(data) {
 
     }
 
-    console.log(convertedData);
+    //console.log(convertedData);
     return convertedData;
 
 }
