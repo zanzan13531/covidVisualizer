@@ -1,0 +1,7 @@
+github pages page: https://zanzan13531.github.io/covidVisualizer/test2.html
+charts page: https://canvasjs.com/javascript-charts/
+dual chart page: https://canvasjs.com/javascript-charts/solid-dashed-line-chart/
+normal line chart page: https://canvasjs.com/html5-javascript-line-chart/
+javascript date stuff: https://www.w3schools.com/jsref/jsref_obj_date.asp
+data api: https://covidtracking.com/api
+usa historical daily number of cases: https://covidtracking.com/api/v1/us/daily.json
