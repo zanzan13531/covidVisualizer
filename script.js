@@ -92,7 +92,7 @@ function toogleDataSeries(e){
 
 function generateTotalCasesGraphData(data) {
 
-    var convertedData = array();
+    var convertedData = [];
 
     for (var i = (data.length - 1); i > 0; i--) {
         
@@ -105,13 +105,13 @@ function generateTotalCasesGraphData(data) {
 
     }
 
-    return(convertedData);
+    return convertedData;
 
 }
 
 function generateActiveCasesGraphData(data) {
 
-    var convertedData = array();
+    var convertedData = [];
 
     for (var i = (data.length - 1); i > 0; i--) {
         
@@ -124,6 +124,6 @@ function generateActiveCasesGraphData(data) {
 
     }
 
-    return(convertedData);
+    return convertedData;
 
 }
