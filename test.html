@@ -37,6 +37,6 @@
         }
     </script>
     <!-- I frame with src pointing to json file on server, onload we apply "this" to have the iframe context, display none as we don't want to show the iframe -->
-    <iframe src="https://covidtracking.com/api/v1/us/daily.json" onload="jsonOnLoad.apply(this, someCallback)" style="display: none;"></iframe>
+    <iframe src="https://covidtracking.com/api/v1/us/daily.json?" onload="jsonOnLoad.apply(this, someCallback)" style="display: none;"></iframe>
   </body>
 </html>
