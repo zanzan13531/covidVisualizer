@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>test </title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <script>
+        fetch("https://covidtracking.com/api/v1/us/daily.json").then(r=>r.json()).then(data=>{
+              //this gets called when the data is there
+                var dataTestDiv = document.createElement("div");
+
+                for (var i = 0; i < data.length; i++) {
+                    
+                    var newContent = document.createTextNode(data[i]["date"]); 
+                    // add the text node to the newly created div
+                    dataTestDiv.appendChild(newContent);
+                }
+        });
+
+    </script> 
+   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+   <script src="script.js"></script>
+</body>
+</html>
