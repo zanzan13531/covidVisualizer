@@ -9,15 +9,8 @@
   </head>
   <body>
     <script>
-        function someCallback(data){
-            /** do something with data */
-            console.log(data);
-    
-        }
-        function jsonOnLoad(callback){
-            const raw = this.contentWindow.document.body.textContent.trim();
-            try {
-                const data = JSON.parse(raw);
+        $( document ).ready(function() {
+            $.getJSON("https://covidtracking.com/api/v1/us/daily.json", function(data) {
                 
                 var dataTestDiv = document.createElement("div");
 
@@ -27,16 +20,12 @@
                     // add the text node to the newly created div
                     dataTestDiv.appendChild(newContent);
                 }
+                
+            });
+        });
 
-
-                callback(data);
-            }catch(e){
-                console.warn(e.message);
-            }
-            this.remove();
-        }
-    </script>
-    <!-- I frame with src pointing to json file on server, onload we apply "this" to have the iframe context, display none as we don't want to show the iframe -->
-    <iframe src="https://covidtracking.com/api/v1/us/daily.json?" onload="jsonOnLoad.apply(this, someCallback)" style="display: none;"></iframe>
-  </body>
+    </script> 
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="script.js"></script>
+</body>
 </html>
