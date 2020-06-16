@@ -124,6 +124,7 @@ function generateActiveCasesGraphData(data) {
 
     }
 
+    console.log(convertedData);
     return convertedData;
 
 }
