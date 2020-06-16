@@ -5,7 +5,7 @@ function dataEater() {
 
           for (var i = 0; i < data.length; i++) {
 
-            data[i]["date"] = new Date(data[i]["date"].substring(0,4), data[i]["date"].substring(4,6), data[i]["date"].substring(6, 8));
+            data[i]["date"] = new Date(data[i]["date"].toString().substring(0,4), data[i]["date"].toString().substring(4,6), data[i]["date"].toString().substring(6, 8));
 
           }
 
