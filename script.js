@@ -35,6 +35,7 @@ function renderUSNationwideTotalCases(data) {
 
     chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
+        zoomEnabled: true,
         theme: "light2",
         title:{
             text: "US Nationwide Total Cases"
