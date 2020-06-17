@@ -29,9 +29,11 @@ data[i]["date"] = new Date(s.substring(0,4), s.substring(4,6), s.substring(6, 8)
 
 }
 
+var chart;
+
 function renderUSNationwideTotalCases(data) {
 
-    var chart = new CanvasJS.Chart("chartContainer", {
+    chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
         theme: "light2",
         title:{
@@ -95,7 +97,7 @@ function generateTotalCasesGraphData(data) {
 
     var convertedData = [];
 
-    for (var i = (data.length - 1); i > 0; i--) {
+    for (var i = (data.length - 1); i >= 0; i--) {
         
         var s = data[i]["date"] + "";
         //data[i]["date"] = new Date(s.substring(0,4), s.substring(4,6), s.substring(6, 8));
@@ -114,7 +116,7 @@ function generateActiveCasesGraphData(data) {
 
     var convertedData = [];
 
-    for (var i = (data.length - 1); i > 0; i--) {
+    for (var i = (data.length - 1); i >= 0; i--) {
         
         var s = data[i]["date"] + "";
         //data[i]["date"] = new Date(s.substring(0,4), s.substring(4,6), s.substring(6, 8));
