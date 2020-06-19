@@ -140,13 +140,13 @@ function generateActiveCasesGraphData(data) {
 function loadNationalPage() {
 
     document.getElementById("detailedPage").style.display = "block";
-    stateOverview.style.display = "none";
+    document.getElementById("stateOverview").style.display = "none";
 
 }
 
 function loadStatesPage() {
 
     document.getElementById("detailedPage").style.display = "none";
-    stateOverview.style.display = "block";
+    document.getElementById("stateOverview").style.display = "block";
 
 }
