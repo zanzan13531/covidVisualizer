@@ -17,17 +17,21 @@
 
     <br>
 
-    <h1>US Coronavirus Graphs</h1>
+    <h1 id="titleText">US Coronavirus Graphs</h1>
+
     </div>
 
     <div id="navBar">
-    
-      <button class="nationalNavButton">National</button>
-      <button class="statesNavButton">States</button>
+      
+      <br>
+
+      <button class="nationalNavButton" onclick="loadNationalPage()">National</button>
+      <button class="statesNavButton" onclick="loadStatesPage()">States</button>
 
     </div>
 
-
+    <div id="detailedPage">
+      
     <br>
     <br>
 
@@ -37,5 +41,31 @@
     <div id="chartContainer" style="height: 370px; width: 80%; margin: auto;"></div>
     <!--<button onclick= "renderUSNationwideTotalCases()">Show Graph</button>-->
    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+
+    </div>
+
+    <div id="stateOverview">
+
+      <table style="width:100%">
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Age</th>
+        </tr>
+        <tr>
+          <td>Jill</td>
+          <td>Smith</td>
+          <td>50</td>
+        </tr>
+        <tr>
+          <td>Eve</td>
+          <td>Jackson</td>
+          <td>94</td>
+        </tr>
+      </table>
+
+    </div>
+
+
 </body>
 </html>

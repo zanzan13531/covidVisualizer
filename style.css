@@ -18,3 +18,11 @@ button.statesNavButton {
     border: none;
 
 }
+
+.stateOverview {
+    display: none;
+}
+
+.detailedPage {
+    display: block;
+}
