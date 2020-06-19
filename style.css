@@ -19,10 +19,10 @@ button.statesNavButton {
 
 }
 
-.stateOverview {
+#stateOverview {
     display: none;
 }
 
-.detailedPage {
+#detailedPage {
     display: block;
 }
