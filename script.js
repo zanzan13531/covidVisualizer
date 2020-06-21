@@ -203,18 +203,23 @@ function loadStatesPage() {
 
 function fillStateOverviewTable() {
 
+    var counter = 0;
     var stateOverviewTable = document.getElementById("stateOverviewTable");
     var stateOverviewTableRows = [];
     var stateOverviewTableCells = [];
-    for (var q = 0; q < 10; q++) {
+    for (var q = 0; q < 13; q++) {
 
         stateOverviewTableRows.push(stateOverviewTable.insertRow(q));
 
-        for (var p = 0; p < 5; p++) {
+        for (var p = 0; p < 4; p++) {
 
+            counter++;
+            if (counter > 50) {
+                break;
+            }
             stateOverviewTableCells.push(stateOverviewTableRows[q].insertCell(p));
             var chartHolder = document.createElement("div");
-            var stateNumber = (q * 5) + p;
+            var stateNumber = (q * 4) + p;
             var stateAbbreviation = stateAbbreviations[stateNumber]
             var stateChartName = stateAbbreviation + "chart";
             chartHolder.style.height = "300px";
