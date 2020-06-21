@@ -268,11 +268,11 @@ function fillStateOverviewTable() {
     var stateOverviewTable = document.getElementById("stateOverviewTable");
     var stateOverviewTableRows = [];
     var stateOverviewTableCells = [];
-    for (var q = 0; q < 13; q++) {
+    for (var q = 0; q < 17; q++) {
 
         stateOverviewTableRows.push(stateOverviewTable.insertRow(q));
 
-        for (var p = 0; p < 4; p++) {
+        for (var p = 0; p < 3; p++) {
 
             counter++;
             if (counter > 50) {
@@ -280,11 +280,11 @@ function fillStateOverviewTable() {
             }
             stateOverviewTableCells.push(stateOverviewTableRows[q].insertCell(p));
             var chartHolder = document.createElement("div");
-            var stateNumber = (q * 4) + p;
+            var stateNumber = (q * 3) + p;
             var stateAbbreviation = stateAbbreviations[stateNumber]
             var stateChartName = stateAbbreviation + "chart";
             chartHolder.style.height = "200px";
-            chartHolder.style.width = "25%";
+            chartHolder.style.width = "30%";
             chartHolder.style.margin = "auto";
             chartHolder.id = stateChartName;
             stateOverviewTableCells[stateNumber].appendChild(chartHolder);
