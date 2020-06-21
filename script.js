@@ -10,7 +10,8 @@ function dataEater() {
 function dataGrabber(dataAPILink) {
 
     fetch(dataAPILink).then(r=>r.json()).then(data=>{
-    
+        
+        console.log(data);
         return data;
 
   });
