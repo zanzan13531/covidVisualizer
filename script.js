@@ -284,7 +284,7 @@ function fillStateOverviewTable() {
             var stateAbbreviation = stateAbbreviations[stateNumber]
             var stateChartName = stateAbbreviation + "chart";
             chartHolder.style.height = "200px";
-            chartHolder.style.width = "30%";
+            chartHolder.style.width = "27%";
             chartHolder.style.margin = "auto";
             chartHolder.id = stateChartName;
             stateOverviewTableCells[stateNumber].appendChild(chartHolder);
