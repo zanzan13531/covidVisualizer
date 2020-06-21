@@ -53,25 +53,26 @@ var stateInformationJson = {
 
 var chart;
 
-function dataEater() {
+var stateAbbreviations = [];
+var stateNames = [];
+for (var key in stateInformationJson) {
+    stateAbbreviations.push(key);
+    stateNames.push(stateInformationJson[key]);
+}
 
-    dataGrabber("https://covidtracking.com/api/v1/us/daily.json");
+function USNationalChartGenerator() {
+
+    dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Total and Active Cases", "USNationalChart", "Number of Cases", "Total Cases", "Active Cases");
 
 }
 
-function dataGrabber(dataAPILink) {
+function dataGrabber(dataAPILink, chartTitle, chartName, yAxisTitle, yData1Name, yData2Name) {
 
     fetch(dataAPILink).then(r=>r.json()).then(data=>{
         
-        renderUSNationwideTotalCases(data);
+        renderTimeVsDualYAxisGraph(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
 
   });
-
-}
-
-function renderUSNationwideTotalCases(data) {
-
-    renderTimeVsDualYAxisGraph(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), "US National Total and Active Cases", "USNationalChart", "Number of Cases", "Total Cases", "Active Cases");
 
 }
 
@@ -211,10 +212,21 @@ function fillStateOverviewTable() {
         for (var p = 0; p < 5; p++) {
 
             stateOverviewTableRows[q].insertCell(p);
+            var chartHolder = document.createElement("div");
+            var stateNumber = (q * 5) + p;
+            var stateAbbreviation = stateAbbreviations[stateNumber]
+            var stateChartName = stateAbbreviation + "chart";
+            chartHolder.style.height = "200px";
+            chartHolder.style.width = "16%";
+            chartHolder.style.margin = "auto";
+            chartHolder.id = stateChartName;
+            stateOverviewTableRows[q][p].appendChild(chartHolder);
+            var dataAPILinkForState = "https://covidtracking.com/api/v1/states/" + stateAbbreviation + "/daily.json";
+            var stateChartTitle = stateNames[stateNumber] + " National Total and Active Cases";
+            dataGrabber(dataAPILinkForState, stateChartTitle, stateChartName, "Number of Cases", "Total Cases", "Active Cases");
 
         }
 
     }
 
 }
-
