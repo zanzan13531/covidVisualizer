@@ -1,9 +1,59 @@
+var stateInformationJson = {
+    "al":"Alabama",
+    "ak":"Alaska",
+    "az":"Arizona",
+    "ar":"Arkansas",
+    "ca":"California",
+    "co":"Colorado",
+    "ct":"Connecticut",
+    "de":"Delaware",
+    "fl":"Florida",
+    "ga":"Georgia",
+    "hi":"Hawaii",
+    "id":"Idaho",
+    "il":"Illinois",
+    "in":"Indiana",
+    "ia":"Iowa",
+    "ks":"Kansas",
+    "ky":"Kentucky",
+    "la":"Louisiana",
+    "me":"Maine",
+    "md":"Maryland",
+    "ma":"Massachusetts",
+    "mi":"Michigan",
+    "mn":"Minnesota",
+    "ms":"Mississippi",
+    "mo":"Missouri",
+    "mt":"Montana",
+    "ne":"Nebraska",
+    "nv":"Nevada",
+    "nh":"New Hampshire",
+    "nj":"New Jersey",
+    "nm":"New Mexico",
+    "ny":"New York",
+    "nc":"North Carolina",
+    "nd":"North Dakota",
+    "oh":"Ohio",
+    "ok":"Oklahoma",
+    "or":"Oregeon",
+    "pa":"Pennsylvania",
+    "ri":"Rhode Island",
+    "sc":"South Carolina",
+    "sd":"South Dakota",
+    "tn":"Tennessee",
+    "tx":"Texas",
+    "ut":"Utah",
+    "vt":"Vermont",
+    "va":"Virginia",
+    "wa":"Washington",
+    "wv":"West Virginia",
+    "wi":"Wisconsin",
+    "wy":"Wyoming",
+};
+
 function dataEater() {
 
-    USANationalData = dataGrabber("https://covidtracking.com/api/v1/us/daily.json");
-    console.log(USANationalData);
-
-    renderUSNationwideTotalCases(USANationalData);
+    dataGrabber("https://covidtracking.com/api/v1/us/daily.json");
 
 }
 
@@ -11,8 +61,7 @@ function dataGrabber(dataAPILink) {
 
     fetch(dataAPILink).then(r=>r.json()).then(data=>{
         
-        console.log(data);
-        return data;
+        renderUSNationwideTotalCases(data);
 
   });
 
@@ -22,7 +71,6 @@ var chart;
 
 function renderUSNationwideTotalCases(data) {
 
-    console.log(data);
     renderTimeVsDualYAxisGraph(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), "US National Total and Active Cases", "USNationalChart", "Number of Cases", "Total Cases", "Active Cases");
 
 }
@@ -154,6 +202,19 @@ function loadStatesPage() {
 
 function fillStateOverviewTable() {
 
-    //stuff
+    var stateOverviewTable = document.getElementById("stateOverviewTable");
+    var stateOverviewTableRows = [];
+    for (var q = 0; q < 10; q++) {
+
+        stateOverviewTableRows.push(stateOverviewTable.insertRow(q));
+
+        for (var p = 0; p < 5; p++) {
+
+            stateOverviewTableRows[q].insertCell(p);
+
+        }
+
+    }
 
 }
+
