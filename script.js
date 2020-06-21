@@ -1,30 +1,18 @@
 function dataEater() {
 
-    fetch("https://covidtracking.com/api/v1/us/daily.json").then(r=>r.json()).then(data=>{
-        //this gets called when the data is there
+    USANationalData = dataGrabber("https://covidtracking.com/api/v1/us/daily.json");
 
-        /*
-          for (var i = 0; i < data.length; i++) {
+    
+    renderUSNationwideTotalCases(USANationalData);
 
-            var s = data[i]["date"]+"";
-data[i]["date"] = new Date(s.substring(0,4), s.substring(4,6), s.substring(6, 8));
+}
 
-          }
-          */
-          /*
-          var dataTestDiv = document.createElement("div");
+function dataGrabber(dataAPILink) {
 
-          for (var i = 0; i < data.length; i++) {
-              
-              var newContent = document.createTextNode(data[i]["date"]); 
-              // add the text node to the newly created div
-              dataTestDiv.appendChild(newContent);
-          }
+    fetch(dataAPILink).then(r=>r.json()).then(data=>{
+    
+        return data;
 
-          document.body.appendChild(dataTestDiv);
-          */
-
-          renderUSNationwideTotalCases(data);
   });
 
 }
@@ -33,54 +21,7 @@ var chart;
 
 function renderUSNationwideTotalCases(data) {
 
-    chart = new CanvasJS.Chart("chartContainer", {
-        animationEnabled: true,
-        zoomEnabled: true,
-        theme: "light2",
-        title:{
-            text: "US Nationwide Total Cases"
-        },
-        axisX:{
-            valueFormatString: "DD MMM",
-            crosshair: {
-                enabled: true,
-                snapToDataPoint: true
-            }
-        },
-        axisY: {
-            title: "Number of Cases",
-            crosshair: {
-                enabled: true
-            }
-        },
-        toolTip:{
-            shared:true
-        },  
-        legend:{
-            cursor:"pointer",
-            verticalAlign: "bottom",
-            horizontalAlign: "left",
-            dockInsidePlotArea: true,
-            itemclick: toogleDataSeries
-        },
-        data: [{
-            type: "line",
-            showInLegend: true,
-            name: "Total Cases",
-            markerType: "square",
-            xValueFormatString: "DD MMM, YYYY",
-            color: "#F08080",
-            dataPoints: generateTotalCasesGraphData(data)
-        },
-        {
-            type: "line",
-            showInLegend: true,
-            name: "Active Cases",
-            lineDashType: "dash",
-            dataPoints: generateActiveCasesGraphData(data)
-        }]
-    });
-    chart.render();
+    renderTimeVsDualYAxisGraph(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), "US National Total and Active Cases", "USNationalChart", "Number of Cases", "Total Cases", "Active Cases");
 
 }
 
@@ -133,6 +74,68 @@ function generateActiveCasesGraphData(data) {
 
 }
 
+function renderTimeVsDualYAxisGraph(yData1, yData2, chartTitle, chartName, yAxisTitle, yData1Name, yData2Name) {
+
+    chart = new CanvasJS.Chart(chartName, {
+        animationEnabled: true,
+        zoomEnabled: true,
+        theme: "light2",
+        title:{
+            text: chartTitle
+        },
+        axisX:{
+            valueFormatString: "DD MMM",
+            crosshair: {
+                enabled: true,
+                snapToDataPoint: true
+            }
+        },
+        axisY: {
+            title: yAxisTitle,
+            crosshair: {
+                enabled: true
+            }
+        },
+        toolTip:{
+            shared:true
+        },  
+        legend:{
+            cursor:"pointer",
+            verticalAlign: "bottom",
+            horizontalAlign: "left",
+            dockInsidePlotArea: true,
+            itemclick: toogleDataSeries
+        },
+        data: [{
+            type: "line",
+            showInLegend: true,
+            name: yData1Name,
+            markerType: "square",
+            xValueFormatString: "DD MMM, YYYY",
+            color: "#F08080",
+            dataPoints: yData1
+        },
+        {
+            type: "line",
+            showInLegend: true,
+            name: yData2Name,
+            lineDashType: "dash",
+            dataPoints: yData2
+        }]
+    });
+    chart.render();
+
+}
+
+function toogleDataSeries(e){
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	} else{
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+
 function loadNationalPage() {
 
     document.getElementById("detailedPage").style.display = "block";
@@ -144,5 +147,11 @@ function loadStatesPage() {
 
     document.getElementById("detailedPage").style.display = "none";
     document.getElementById("stateOverview").style.display = "block";
+
+}
+
+function fillStateOverviewTable() {
+
+    //stuff
 
 }
