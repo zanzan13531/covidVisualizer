@@ -191,7 +191,7 @@ function renderTimeVsDualYAxisGraphForOverview(yData1, yData2, chartTitle, chart
         zoomEnabled: true,
         theme: "light2",
         height: 200,
-        width: 20%,
+        width: 400,
         title:{
             text: chartTitle
         },
