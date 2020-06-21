@@ -62,16 +62,22 @@ for (var key in stateInformationJson) {
 
 function USNationalChartGenerator() {
 
-    dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Total and Active Cases", "USNationalChart", "Number of Cases", "Total Cases", "Active Cases");
+    dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Total and Active Cases", "USNationalChart", "Number of Cases", "Total Cases", "Active Cases", false);
 
 }
 
-function dataGrabber(dataAPILink, chartTitle, chartName, yAxisTitle, yData1Name, yData2Name) {
+function dataGrabber(dataAPILink, chartTitle, chartName, yAxisTitle, yData1Name, yData2Name, isOverview) {
 
     fetch(dataAPILink).then(r=>r.json()).then(data=>{
-        
-        renderTimeVsDualYAxisGraph(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
+        if (isOverview) {
 
+            renderTimeVsDualYAxisGraphForOverview(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
+
+        } else {
+
+            renderTimeVsDualYAxisGraph(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
+
+        }
   });
 
 }
@@ -178,6 +184,61 @@ function renderTimeVsDualYAxisGraph(yData1, yData2, chartTitle, chartName, yAxis
 
 }
 
+function renderTimeVsDualYAxisGraphForOverview(yData1, yData2, chartTitle, chartName, yAxisTitle, yData1Name, yData2Name) {
+
+    chart = new CanvasJS.Chart(chartName, {
+        animationEnabled: true,
+        zoomEnabled: true,
+        theme: "light2",
+        height: 200,
+        width: 20%,
+        title:{
+            text: chartTitle
+        },
+        axisX:{
+            valueFormatString: "DD MMM",
+            crosshair: {
+                enabled: true,
+                snapToDataPoint: true
+            }
+        },
+        axisY: {
+            title: yAxisTitle,
+            crosshair: {
+                enabled: true
+            }
+        },
+        toolTip:{
+            shared:true
+        },  
+        legend:{
+            cursor:"pointer",
+            verticalAlign: "bottom",
+            horizontalAlign: "left",
+            dockInsidePlotArea: true,
+            itemclick: toogleDataSeries
+        },
+        data: [{
+            type: "line",
+            showInLegend: true,
+            name: yData1Name,
+            markerType: "square",
+            xValueFormatString: "DD MMM, YYYY",
+            color: "#F08080",
+            dataPoints: yData1
+        },
+        {
+            type: "line",
+            showInLegend: true,
+            name: yData2Name,
+            lineDashType: "dash",
+            dataPoints: yData2
+        }]
+    });
+    chart.render();
+
+}
+
 function toogleDataSeries(e){
 	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
 		e.dataSeries.visible = false;
@@ -222,14 +283,14 @@ function fillStateOverviewTable() {
             var stateNumber = (q * 4) + p;
             var stateAbbreviation = stateAbbreviations[stateNumber]
             var stateChartName = stateAbbreviation + "chart";
-            chartHolder.style.height = "370px";
-            chartHolder.style.width = "60%";
+            chartHolder.style.height = "200px";
+            chartHolder.style.width = "20%";
             chartHolder.style.margin = "auto";
             chartHolder.id = stateChartName;
             stateOverviewTableCells[stateNumber].appendChild(chartHolder);
             var dataAPILinkForState = "https://covidtracking.com/api/v1/states/" + stateAbbreviation + "/daily.json";
             var stateChartTitle = stateNames[stateNumber] + " Total and Active Cases";
-            dataGrabber(dataAPILinkForState, stateChartTitle, stateChartName, "Number of Cases", "Total Cases", "Active Cases");
+            dataGrabber(dataAPILinkForState, stateChartTitle, stateChartName, "Number of Cases", "Total Cases", "Active Cases", true);
 
         }
 
