@@ -1,8 +1,8 @@
 function dataEater() {
 
     USANationalData = dataGrabber("https://covidtracking.com/api/v1/us/daily.json");
+    console.log(USANationalData);
 
-    
     renderUSNationwideTotalCases(USANationalData);
 
 }
@@ -21,6 +21,7 @@ var chart;
 
 function renderUSNationwideTotalCases(data) {
 
+    console.log(data);
     renderTimeVsDualYAxisGraph(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), "US National Total and Active Cases", "USNationalChart", "Number of Cases", "Total Cases", "Active Cases");
 
 }
