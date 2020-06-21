@@ -205,13 +205,14 @@ function fillStateOverviewTable() {
 
     var stateOverviewTable = document.getElementById("stateOverviewTable");
     var stateOverviewTableRows = [];
+    var stateOverviewTableCells = [];
     for (var q = 0; q < 10; q++) {
 
         stateOverviewTableRows.push(stateOverviewTable.insertRow(q));
 
         for (var p = 0; p < 5; p++) {
 
-            stateOverviewTableRows[q].insertCell(p);
+            stateOverviewTableCells.push(stateOverviewTableRows[q].insertCell(p));
             var chartHolder = document.createElement("div");
             var stateNumber = (q * 5) + p;
             var stateAbbreviation = stateAbbreviations[stateNumber]
@@ -220,7 +221,7 @@ function fillStateOverviewTable() {
             chartHolder.style.width = "16%";
             chartHolder.style.margin = "auto";
             chartHolder.id = stateChartName;
-            stateOverviewTableRows[q][p].appendChild(chartHolder);
+            stateOverviewTableCells[stateNumber].appendChild(chartHolder);
             var dataAPILinkForState = "https://covidtracking.com/api/v1/states/" + stateAbbreviation + "/daily.json";
             var stateChartTitle = stateNames[stateNumber] + " National Total and Active Cases";
             dataGrabber(dataAPILinkForState, stateChartTitle, stateChartName, "Number of Cases", "Total Cases", "Active Cases");
