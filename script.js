@@ -51,6 +51,8 @@ var stateInformationJson = {
     "wy":"Wyoming",
 };
 
+var chart;
+
 function dataEater() {
 
     dataGrabber("https://covidtracking.com/api/v1/us/daily.json");
@@ -66,8 +68,6 @@ function dataGrabber(dataAPILink) {
   });
 
 }
-
-var chart;
 
 function renderUSNationwideTotalCases(data) {
 
