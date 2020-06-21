@@ -26,3 +26,7 @@ button.statesNavButton {
 #detailedPage {
     display: block;
 }
+
+table {
+    border-collapse: collapse;
+}
