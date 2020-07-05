@@ -227,13 +227,13 @@ function renderTimeVsDualYAxisGraphForOverview(yData1, yData2, chartTitle, chart
             color: "#F08080",
             dataPoints: yData1
         },
-        {
+        /*{
             type: "line",
             showInLegend: true,
             name: yData2Name,
             lineDashType: "dash",
             dataPoints: yData2
-        }]
+        }*/]
     });
     chart.render();
 
@@ -289,7 +289,8 @@ function fillStateOverviewTable() {
             chartHolder.id = stateChartName;
             stateOverviewTableCells[stateNumber].appendChild(chartHolder);
             var dataAPILinkForState = "https://covidtracking.com/api/v1/states/" + stateAbbreviation + "/daily.json";
-            var stateChartTitle = stateNames[stateNumber] + " Total and Active Cases";
+            //var stateChartTitle = stateNames[stateNumber] + " Total and Active Cases";
+	    var stateChartTitle = stateNames[stateNumber] + " Total Cases";
             dataGrabber(dataAPILinkForState, stateChartTitle, stateChartName, "Number of Cases", "Total Cases", "Active Cases", true);
 
         }
