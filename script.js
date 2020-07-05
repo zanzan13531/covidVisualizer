@@ -62,7 +62,7 @@ for (var key in stateInformationJson) {
 
 function USNationalChartGenerator() {
 
-    dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Total and Active Cases", "USNationalChart", "Number of Cases", "Total Cases", "Active Cases", false);
+    dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Total and Active Cases", "totalCasesChart", "Number of Cases", "Total Cases", "Active Cases", false);
 
 }
 
