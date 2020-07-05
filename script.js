@@ -120,7 +120,7 @@ function generateActiveCasesGraphData(data) {
         var s = data[i]["date"] + "";
         //data[i]["date"] = new Date(s.substring(0,4), s.substring(4,6), s.substring(6, 8));
 
-        var tempStorage = {x : new Date(s.substring(0,4), s.substring(4,6) - 1, s.substring(6,8)), y : data[i]["positive"] - data[i]["recovered"]}
+        var tempStorage = {x : new Date(s.substring(0,4), s.substring(4,6) - 1, s.substring(6,8)), y : data[i]["positive"] - data[i]["recovered"] - data[i]["death"]}
 
         convertedData.push(tempStorage);
 
