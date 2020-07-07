@@ -131,6 +131,53 @@ function generateActiveCasesGraphData(data) {
 
 }
 
+function renderTimeVsSingleYAxisGraph(yData1, chartTitle, chartName, yAxisTitle, yData1Name) {
+
+    chart = new CanvasJS.Chart(chartName, {
+        animationEnabled: true,
+        zoomEnabled: true,
+        theme: "light2",
+        title:{
+            text: chartTitle
+        },
+        axisX:{
+            valueFormatString: "DD MMM",
+            crosshair: {
+                enabled: true,
+                snapToDataPoint: true
+            }
+        },
+        axisY: {
+            title: yAxisTitle,
+            crosshair: {
+                enabled: true
+            }
+        },
+        toolTip:{
+            shared:true
+        },  
+        legend:{
+            cursor:"pointer",
+            verticalAlign: "bottom",
+            horizontalAlign: "left",
+            dockInsidePlotArea: true,
+            itemclick: toogleDataSeries
+        },
+        data: [{
+            type: "line",
+            showInLegend: true,
+            name: yData1Name,
+            markerType: "square",
+            xValueFormatString: "DD MMM, YYYY",
+            color: "#F08080",
+            dataPoints: yData1
+        }]
+    });
+    chart.render();
+
+}
+
+
 function renderTimeVsDualYAxisGraph(yData1, yData2, chartTitle, chartName, yAxisTitle, yData1Name, yData2Name) {
 
     chart = new CanvasJS.Chart(chartName, {
