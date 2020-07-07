@@ -53,12 +53,8 @@ var stateInformationJson = {
 
 var chart;
 
-var stateAbbreviations = [];
-var stateNames = [];
-for (var key in stateInformationJson) {
-    stateAbbreviations.push(key);
-    stateNames.push(stateInformationJson[key]);
-}
+var stateAbbreviations = Object.keys(stateInformationJson);
+var stateNames = Object.values(stateInformationJson);
 
 function USNationalChartGenerator() {
 
@@ -86,16 +82,6 @@ function dataGrabber(dataAPILink, chartTitle, chartName, yAxisTitle, yData1Name,
   });
 
 }
-
-function toogleDataSeries(e){
-	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-		e.dataSeries.visible = false;
-	} else{
-		e.dataSeries.visible = true;
-	}
-	chart.render();
-}
-
 
 function generateGeneralGraphData(data, dataName) {
 
