@@ -64,6 +64,17 @@ function USNationalChartGenerator() {
 
 }
 
+function stateChartGenerator(stateName, stateDataLink) {
+
+    dataGrabber(stateDataLink, stateName + " Total and Active Cases", "totalCasesChart", "Number of Cases", "Total Cases", "Active Cases", 1);
+	dataGrabber(stateDataLink, stateName + " Total Deaths", "totalDeathsChart", "Number of Deaths", "Deaths", "blank", 2);
+	dataGrabber(stateDataLink, stateName + " Changes", "newCasesDeathsChart", "Number of Cases", "Cases", "Deaths", 1);
+	   
+	document.getElementById("detailedPage").style.display = "block";
+    document.getElementById("stateOverview").style.display = "none";
+
+}
+
 function dataGrabber(dataAPILink, chartTitle, chartName, yAxisTitle, yData1Name, yData2Name, whatToDo) {
 
     fetch(dataAPILink).then(r=>r.json()).then(data=>{
@@ -377,6 +388,7 @@ function loadNationalPage() {
 
     document.getElementById("detailedPage").style.display = "block";
     document.getElementById("stateOverview").style.display = "none";
+	USNationalChartGenerator();
 
 }
 
@@ -417,6 +429,7 @@ function fillStateOverviewTable() {
             var dataAPILinkForState = "https://covidtracking.com/api/v1/states/" + stateAbbreviation + "/daily.json";
             //var stateChartTitle = stateNames[stateNumber] + " Total and Active Cases";
 	    var stateChartTitle = stateNames[stateNumber] + " Total Cases";
+		chartHolder.onclick = stateChartGenerator(stateNames[stateNumber], dataAPILinkForState);
             dataGrabber(dataAPILinkForState, stateChartTitle, stateChartName, "Number of Cases", "Total Cases", "Active Cases", 0);
 
         }
