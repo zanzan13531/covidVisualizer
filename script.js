@@ -416,7 +416,7 @@ function fillStateOverviewTable() {
                 break;
             }
             stateOverviewTableCells.push(stateOverviewTableRows[q].insertCell(p));
-            var chartHolder = document.createElement("div");
+            let chartHolder = document.createElement("div");
             var stateNumber = (q * 3) + p;
             var stateAbbreviation = stateAbbreviations[stateNumber]
             var stateChartName = stateAbbreviation + "chart";
