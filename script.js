@@ -62,22 +62,21 @@ for (var key in stateInformationJson) {
 
 function USNationalChartGenerator() {
 
-    dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Total and Active Cases", "totalCasesChart", "Number of Cases", "Total Cases", "Active Cases", false);
+    dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Total and Active Cases", "totalCasesChart", "Number of Cases", "Total Cases", "Active Cases", 1);
 
 }
 
-function dataGrabber(dataAPILink, chartTitle, chartName, yAxisTitle, yData1Name, yData2Name, isOverview) {
+function dataGrabber(dataAPILink, chartTitle, chartName, yAxisTitle, yData1Name, yData2Name, whatToDo) {
 
     fetch(dataAPILink).then(r=>r.json()).then(data=>{
-        if (isOverview) {
-
-            renderTimeVsDualYAxisGraphForOverview(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
-
-        } else {
-
-            renderTimeVsDualYAxisGraph(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
-
-        }
+	    
+	switch(whatToDo) {
+		case 0: 
+			renderTimeVsDualYAxisGraphForOverview(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
+		case 1:
+			renderTimeVsDualYAxisGraph(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
+	}
+        
   });
 
 }
@@ -338,7 +337,7 @@ function fillStateOverviewTable() {
             var dataAPILinkForState = "https://covidtracking.com/api/v1/states/" + stateAbbreviation + "/daily.json";
             //var stateChartTitle = stateNames[stateNumber] + " Total and Active Cases";
 	    var stateChartTitle = stateNames[stateNumber] + " Total Cases";
-            dataGrabber(dataAPILinkForState, stateChartTitle, stateChartName, "Number of Cases", "Total Cases", "Active Cases", true);
+            dataGrabber(dataAPILinkForState, stateChartTitle, stateChartName, "Number of Cases", "Total Cases", "Active Cases", 0);
 
         }
 
