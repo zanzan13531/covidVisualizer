@@ -411,6 +411,7 @@ function fillStateOverviewTable() {
             chartHolder.style.height = "200px";
             chartHolder.style.width = "30%";
             chartHolder.style.margin = "auto";
+	    chartHolder.style.display = "flex";
             chartHolder.id = stateChartName;
             stateOverviewTableCells[stateNumber].appendChild(chartHolder);
             var dataAPILinkForState = "https://covidtracking.com/api/v1/states/" + stateAbbreviation + "/daily.json";
