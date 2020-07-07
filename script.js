@@ -148,7 +148,7 @@ function generateRecoveryGraphData(data) {
 	var month = s.substring(4,6) - 1;
 	var day = s.substring(6,8);
 
-        var tempStorage = {x : new Date(s.substring(0,4), s.substring(4,6) - 1, s.substring(6,8)), y : data[i + 1]["recovered"] - data[i]["recovered"]}
+        var tempStorage = {x : new Date(s.substring(0,4), s.substring(4,6) - 1, s.substring(6,8)), y : -(data[i + 1]["recovered"] - data[i]["recovered"])}
 
         convertedData.push(tempStorage);
 
