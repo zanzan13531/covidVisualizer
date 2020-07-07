@@ -68,7 +68,7 @@ function stateChartGenerator(stateName, stateDataLink) {
 
     dataGrabber(stateDataLink, stateName + " Total and Active Cases", "totalCasesChart", "Number of Cases", "Total Cases", "Active Cases", 1);
 	dataGrabber(stateDataLink, stateName + " Total Deaths", "totalDeathsChart", "Number of Deaths", "Deaths", "blank", 2);
-	dataGrabber(stateDataLink, stateName + " Changes", "newCasesDeathsChart", "Number of Cases", "Cases", "Deaths", 1);
+	dataGrabber(stateDataLink, stateName + " Changes", "newCasesDeathsChart", "Number of Cases", "Cases", "Deaths", 4);
 	   
 	document.getElementById("detailedPage").style.display = "block";
     document.getElementById("stateOverview").style.display = "none";
@@ -91,6 +91,9 @@ function dataGrabber(dataAPILink, chartTitle, chartName, yAxisTitle, yData1Name,
 			break;
 		case 3:
 			renderTimeVsTripleYAxisGraph(generateGeneralGraphData(data, "positiveIncrease"), generateRecoveryGraphData(data), generateGeneralGraphData(data, "deathIncrease"), chartTitle, chartName, yAxisTitle, "Cases", "Recoveries", "Deaths")
+			break;
+		case 4:
+			renderTimeVsDualYAxisGraph(generateGeneralGraphData(data, "positiveIncrease"), generateGeneralGraphData(data, "deathIncrease"), chartTitle, chartName, yAxisTitle, "Cases", "Deaths")
 			break;
 	}
         
