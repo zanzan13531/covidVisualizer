@@ -72,9 +72,11 @@ function dataGrabber(dataAPILink, chartTitle, chartName, yAxisTitle, yData1Name,
 	    
 	switch(whatToDo) {
 		case 0: 
-			renderTimeVsDualYAxisGraphForOverview(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
+			renderTimeVsDualYAxisGraphForOverview(generateGeneralGraphData(data, "positive"), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
 		case 1:
-			renderTimeVsDualYAxisGraph(generateTotalCasesGraphData(data), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
+			renderTimeVsDualYAxisGraph(generateGeneralGraphData(data, "positive"), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
+		case 2:
+			renderTimeVsSingleYAxisGraph(generateGeneralGraphData(data, "death"), chartTitle, chartName, yAxisTitle, yData1Name);
 	}
         
   });
@@ -91,7 +93,7 @@ function toogleDataSeries(e){
 }
 
 
-function generateTotalCasesGraphData(data) {
+function generateGeneralGraphData(data, dataName) {
 
     var convertedData = [];
 
@@ -100,7 +102,7 @@ function generateTotalCasesGraphData(data) {
         var s = data[i]["date"] + "";
         //data[i]["date"] = new Date(s.substring(0,4), s.substring(4,6), s.substring(6, 8));
 
-        var tempStorage = {x : new Date(s.substring(0,4), s.substring(4,6) - 1, s.substring(6,8)), y : data[i]["positive"]}
+        var tempStorage = {x : new Date(s.substring(0,4), s.substring(4,6) - 1, s.substring(6,8)), y : data[i][dataName]}
 
         convertedData.push(tempStorage);
 
