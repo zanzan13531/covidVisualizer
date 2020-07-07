@@ -71,12 +71,16 @@ function dataGrabber(dataAPILink, chartTitle, chartName, yAxisTitle, yData1Name,
 	switch(whatToDo) {
 		case 0: 
 			renderTimeVsDualYAxisGraphForOverview(generateGeneralGraphData(data, "positive"), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
+			break;
 		case 1:
 			renderTimeVsDualYAxisGraph(generateGeneralGraphData(data, "positive"), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
+			break;
 		case 2:
 			renderTimeVsSingleYAxisGraph(generateGeneralGraphData(data, "death"), chartTitle, chartName, yAxisTitle, yData1Name);
+			break;
 		case 3:
 			renderTimeVsTripleYAxisGraph(generateGeneralGraphData(data, "positiveIncrease"), generateRecoveryGraphData(data), generateGeneralGraphData(data, "deathIncrease"), chartTitle, chartName, yAxisTitle, "Cases", "Recoveries", "Deaths")
+			break;
 	}
         
   });
