@@ -351,6 +351,13 @@ function renderTimeVsTripleYAxisGraph(yData1, yData2, yData3, chartTitle, chartN
             name: yData2Name,
             lineDashType: "dash",
             dataPoints: yData2
+        },
+	{
+            type: "line",
+            showInLegend: true,
+            name: yData3Name,
+            lineDashType: "dot",
+            dataPoints: yData3
         }]
     });
     chart.render();
