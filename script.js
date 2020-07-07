@@ -429,8 +429,10 @@ function fillStateOverviewTable() {
             var dataAPILinkForState = "https://covidtracking.com/api/v1/states/" + stateAbbreviation + "/daily.json";
             //var stateChartTitle = stateNames[stateNumber] + " Total and Active Cases";
 	    var stateChartTitle = stateNames[stateNumber] + " Total Cases";
-		chartHolder.onclick = function () {
-    stateChartGenerator(stateNames[stateNumber], dataAPILinkForState);
+		chartHolder.stateName = stateNames[stateNumber];
+chartHolder.apiLink = dataAPILinkForState;
+chartHolder.onclick = function () {
+    stateChartGenerator(chartHolder.stateName, chartHolder.apiLink);
 }
             dataGrabber(dataAPILinkForState, stateChartTitle, stateChartName, "Number of Cases", "Total Cases", "Active Cases", 0);
 
