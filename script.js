@@ -63,6 +63,8 @@ for (var key in stateInformationJson) {
 function USNationalChartGenerator() {
 
     dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Total and Active Cases", "totalCasesChart", "Number of Cases", "Total Cases", "Active Cases", 1);
+	dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Total Deaths", "totalDeathsChart", "Number of Deaths", "Deaths", "blank", 2);
+	dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Changes", "newCasesDeathsChart", "Number of Cases", "Deaths", "blank", 3);
 
 }
 
@@ -77,6 +79,8 @@ function dataGrabber(dataAPILink, chartTitle, chartName, yAxisTitle, yData1Name,
 			renderTimeVsDualYAxisGraph(generateGeneralGraphData(data, "positive"), generateActiveCasesGraphData(data), chartTitle, chartName, yAxisTitle, yData1Name, yData2Name);
 		case 2:
 			renderTimeVsSingleYAxisGraph(generateGeneralGraphData(data, "death"), chartTitle, chartName, yAxisTitle, yData1Name);
+		case 3:
+			renderTimeVsTripleYAxisGraph(generateGeneralGraphData(data, "positiveIncrease"), generateRecoveryGraphData(data), generateGeneralGraphData(data, "deathIncrease"), chartTitle, chartName, yAxisTitle, "Cases", "Recoveries", "Deaths")
 	}
         
   });
@@ -122,6 +126,29 @@ function generateActiveCasesGraphData(data) {
         //data[i]["date"] = new Date(s.substring(0,4), s.substring(4,6), s.substring(6, 8));
 
         var tempStorage = {x : new Date(s.substring(0,4), s.substring(4,6) - 1, s.substring(6,8)), y : data[i]["positive"] - data[i]["recovered"] - data[i]["death"]}
+
+        convertedData.push(tempStorage);
+
+    }
+
+    //console.log(convertedData);
+    return convertedData;
+
+}
+
+function generateRecoveryGraphData(data) {
+
+    var convertedData = [];
+
+    for (var i = (data.length - 2); i >= 0; i--) {
+        
+        var s = data[i]["date"] + "";
+        //data[i]["date"] = new Date(s.substring(0,4), s.substring(4,6), s.substring(6, 8));
+	var year = s.substring(0,4);
+	var month = s.substring(4,6) - 1;
+	var day = s.substring(6,8);
+
+        var tempStorage = {x : new Date(s.substring(0,4), s.substring(4,6) - 1, s.substring(6,8)), y : data[i + 1]["recovered"] - data[i]["recovered"]}
 
         convertedData.push(tempStorage);
 
@@ -282,6 +309,59 @@ function renderTimeVsDualYAxisGraphForOverview(yData1, yData2, chartTitle, chart
             lineDashType: "dash",
             dataPoints: yData2
         }*/]
+    });
+    chart.render();
+
+}
+
+function renderTimeVsTripleYAxisGraph(yData1, yData2, yData3, chartTitle, chartName, yAxisTitle, yData1Name, yData2Name, yData3Name) {
+
+    chart = new CanvasJS.Chart(chartName, {
+        animationEnabled: true,
+        zoomEnabled: true,
+        theme: "light2",
+        title:{
+            text: chartTitle
+        },
+        axisX:{
+            valueFormatString: "DD MMM",
+            crosshair: {
+                enabled: true,
+                snapToDataPoint: true
+            }
+        },
+        axisY: {
+            title: yAxisTitle,
+            crosshair: {
+                enabled: true
+            }
+        },
+        toolTip:{
+            shared:true
+        },  
+        legend:{
+            cursor:"pointer",
+            verticalAlign: "bottom",
+            horizontalAlign: "left",
+            dockInsidePlotArea: true,
+            itemclick: toogleDataSeries
+        },
+        data: [{
+            type: "line",
+            showInLegend: true,
+            name: yData1Name,
+            markerType: "square",
+            xValueFormatString: "DD MMM, YYYY",
+            color: "#F08080",
+            dataPoints: yData1
+        },
+        {
+            type: "line",
+            showInLegend: true,
+            name: yData2Name,
+            lineDashType: "dash",
+            dataPoints: yData2
+        }]
     });
     chart.render();
 
