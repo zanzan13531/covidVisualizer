@@ -60,7 +60,7 @@ function USNationalChartGenerator() {
 
     dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Total and Active Cases", "totalCasesChart", "Number of Cases", "Total Cases", "Active Cases", 1);
 	dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Total Deaths", "totalDeathsChart", "Number of Deaths", "Deaths", "blank", 2);
-	dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Changes", "newCasesDeathsChart", "Number of Cases", "Deaths", "blank", 3);
+	dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Daily Changes", "newCasesDeathsChart", "Number of Cases", "Deaths", "blank", 3);
 
 }
 
@@ -68,7 +68,7 @@ function stateChartGenerator(stateName, stateDataLink) {
 
     dataGrabber(stateDataLink, stateName + " Total and Active Cases", "totalCasesChart", "Number of Cases", "Total Cases", "Active Cases", 1);
 	dataGrabber(stateDataLink, stateName + " Total Deaths", "totalDeathsChart", "Number of Deaths", "Deaths", "blank", 2);
-	dataGrabber(stateDataLink, stateName + " Changes", "newCasesDeathsChart", "Number of Cases", "Cases", "Deaths", 4);
+	dataGrabber(stateDataLink, stateName + " Daily Changes", "newCasesDeathsChart", "Number of Cases", "Cases", "Deaths", 4);
 	   
 	document.getElementById("detailedPage").style.display = "block";
     document.getElementById("stateOverview").style.display = "none";
@@ -77,7 +77,7 @@ function stateChartGenerator(stateName, stateDataLink) {
 
 function dataGrabber(dataAPILink, chartTitle, chartName, yAxisTitle, yData1Name, yData2Name, whatToDo) {
 
-    fetch(dataAPILink).then(r=>r.json()).then(data=>{
+    fetch(dataAPILink, {mode: 'no-cors'}).then(r=>r.json()).then(data=>{
 	    
 	switch(whatToDo) {
 		case 0: 
