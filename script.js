@@ -58,9 +58,9 @@ var stateNames = Object.values(stateInformationJson);
 
 function USNationalChartGenerator() {
 
-    dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Total and Active Cases", "totalCasesChart", "Number of Cases", "Total Cases", "Active Cases", 1);
-	dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Total Deaths", "totalDeathsChart", "Number of Deaths", "Deaths", "blank", 2);
-	dataGrabber("https://covidtracking.com/api/v1/us/daily.json", "US National Daily Changes", "newCasesDeathsChart", "Number of Cases", "Deaths", "blank", 3);
+    dataGrabber("https://api.covidtracking.com/v1/us/daily.json", "US National Total and Active Cases", "totalCasesChart", "Number of Cases", "Total Cases", "Active Cases", 1);
+	dataGrabber("https://api.covidtracking.com/v1/us/daily.json", "US National Total Deaths", "totalDeathsChart", "Number of Deaths", "Deaths", "blank", 2);
+	dataGrabber("https://api.covidtracking.com/v1/us/daily.json", "US National Daily Changes", "newCasesDeathsChart", "Number of Cases", "Deaths", "blank", 3);
 
 }
 
@@ -429,7 +429,7 @@ function fillStateOverviewTable() {
 	    //chartHolder.style.display = "flex";
             chartHolder.id = stateChartName;
             stateOverviewTableCells[stateNumber].appendChild(chartHolder);
-            var dataAPILinkForState = "https://covidtracking.com/api/v1/states/" + stateAbbreviation + "/daily.json";
+            var dataAPILinkForState = "https://api.covidtracking.com/v1/states/" + stateAbbreviation + "/daily.json";
             //var stateChartTitle = stateNames[stateNumber] + " Total and Active Cases";
 	    var stateChartTitle = stateNames[stateNumber] + " Total Cases";
 		chartHolder.stateName = stateNames[stateNumber];
