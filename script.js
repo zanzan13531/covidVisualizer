@@ -77,7 +77,7 @@ function stateChartGenerator(stateName, stateDataLink) {
 
 function dataGrabber(dataAPILink, chartTitle, chartName, yAxisTitle, yData1Name, yData2Name, whatToDo) {
 
-    fetch(dataAPILink, {mode: 'no-cors'}).then(r=>r.json()).then(data=>{
+    fetch(dataAPILink).then(r=>r.json()).then(data=>{
 	    
 	switch(whatToDo) {
 		case 0: 
