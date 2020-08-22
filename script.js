@@ -391,6 +391,7 @@ function loadNationalPage() {
 
     document.getElementById("detailedPage").style.display = "block";
     document.getElementById("stateOverview").style.display = "none";
+    document.getElementById("aboutPage").style.display = "none";
 	USNationalChartGenerator();
 
 }
@@ -399,6 +400,15 @@ function loadStatesPage() {
 
     document.getElementById("detailedPage").style.display = "none";
     document.getElementById("stateOverview").style.display = "block";
+    document.getElementById("aboutPage").style.display = "none";
+
+}
+
+function loadAboutPage() {
+
+    document.getElementById("detailedPage").style.display = "none";
+    document.getElementById("stateOverview").style.display = "none";
+    document.getElementById("aboutPage").style.display = "block";
 
 }
 

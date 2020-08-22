@@ -26,12 +26,11 @@
 
       <button class="nationalNavButton" onclick="loadNationalPage()">National</button>
       <button class="statesNavButton" onclick="loadStatesPage()">States</button>
+      <button class="aboutNavButton" onclick="loadAboutPage()">About</button>
 
       <br>
 
     </div>
-
-    <br>
 
     <div id="detailedPage">
 
@@ -63,6 +62,16 @@
         <script>fillStateOverviewTable(document.currentScript);</script>
 
       </table>
+
+    </div>
+
+    <div id="aboutPage">
+
+      <br>
+
+      <p>All data sourced from https://covidtracking.com/. Active cases is calculated by subtracting deaths and recoveries from total cases, and thus may not be accurate for states which have incommplete data.</p>
+
+      <br>
 
     </div>
 
