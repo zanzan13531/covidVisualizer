@@ -19,6 +19,13 @@ button.statesNavButton {
 
 }
 
+button.aboutNavButton {
+
+    background: none;
+    /*border: none;*/
+
+}
+
 #stateOverview {
     display: none;
 }
